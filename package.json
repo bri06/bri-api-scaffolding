@@ -1,0 +1,24 @@
+{
+  "name": "bri-api-scaffolding",
+  "version": "1.0.0",
+  "description": "bri06 api scafolding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bri06/bri-api-scaffolding.git"
+  },
+  "keywords": [],
+  "author": "briam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bri06/bri-api-scaffolding/issues"
+  },
+  "homepage": "https://github.com/bri06/bri-api-scaffolding#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jsdoc-swagger": "^1.0.5"
+  }
+}
