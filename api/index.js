@@ -10,4 +10,4 @@ const app = express();
 expressJSDocSwagger(app)(config.api.swaggerOptions);
 app.use('/api/v1/songs', songs)
 
-app.listen(config.api.port, () => console.log('Listening on port', config.api.port));
+module.exports = app;
