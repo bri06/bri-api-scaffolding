@@ -1,5 +1,6 @@
 const express = require('express');
 const Controller = require('./index');
+const handleHTTPError = require('../../../utils/errors');
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ const list = (req, res) => {
 const detail = (req, res) => {
   Controller.detail(req.params.id)
     .then(song => res.status(200).json(song))
-    .catch(({ message }) => res.status(500).json(message));
+    .catch(error => handleHTTPError(res, error));
 };
 
 router.get('/', list);

@@ -5,8 +5,13 @@ module.exports = injectedStore => {
   if (!store) {
     throw new Error('Store dependency is required');
   }
+  const detail = async (table, id) => {
+    const songDetail = await store.detail(table, id);
+    if (!songDetail) throw new Error('not found');
+    return songDetail;
+  };
   return {
     list: () => store.list(TABLE),
-    detail: id => store.detail(TABLE, id),
+    detail: id => detail(TABLE, id),
   };
 };
