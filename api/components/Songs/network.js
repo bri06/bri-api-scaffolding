@@ -6,6 +6,7 @@ const router = express.Router();
 /**
  * GET /api/v1/songs
  * @summary List of songs
+ * @tags Songs - Everything about songs
  * @return {array<Song>} 200 - list of songs
 */
 const list = (req, res) => {
@@ -18,6 +19,7 @@ const list = (req, res) => {
  * GET /api/v1/songs/{id}
  * @summary Song detail
  * @param {number} id.path - song id
+ * @tags Songs - Everything about songs
  * @return {Song} 200 - A song detail
 */
 const detail = (req, res) => {
