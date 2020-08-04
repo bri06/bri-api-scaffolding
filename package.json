@@ -21,7 +21,9 @@
   "homepage": "https://github.com/bri06/bri-api-scaffolding#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-jsdoc-swagger": "^1.0.5"
+    "express-jsdoc-swagger": "^1.0.5",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

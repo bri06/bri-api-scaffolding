@@ -1,3 +1,5 @@
+const logger = require('./logger');
+
 const ERROR_TYPES = {
   NOT_FOUND: 'Not found',
   SERVER_ERROR: 'Internal server error',
@@ -10,6 +12,7 @@ const errorFormatter = error => ({
 
 const handleHTTPError = res => error => {
   const formattedError = errorFormatter(error);
+  logger.error(error.stack);
   const types = {
     [ERROR_TYPES.NOT_FOUND]: () => res.status(404).json(formattedError),
     [ERROR_TYPES.SERVER_ERROR]: () => res.status(500).json(formattedError),
