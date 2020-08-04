@@ -8,6 +8,6 @@ const songs = require('./components/Songs/network');
 const app = express();
 
 expressJSDocSwagger(app)(config.api.swaggerOptions);
-app.use('/api/v1/songs', songs)
+app.use('/api/v1/songs', songs);
 
 module.exports = app;
