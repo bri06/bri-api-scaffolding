@@ -4,7 +4,7 @@
   "description": "bri06 api scafolding",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test jest",
     "start": "cross-env node index.js",
     "lint": "./node_modules/.bin/eslint ."
   },
