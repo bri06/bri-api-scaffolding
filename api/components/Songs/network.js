@@ -1,6 +1,6 @@
 const express = require('express');
 const Controller = require('./index');
-const handleHTTPError = require('../../../utils/errors');
+const { handleHTTPError } = require('../../../utils/errors');
 
 const router = express.Router();
 

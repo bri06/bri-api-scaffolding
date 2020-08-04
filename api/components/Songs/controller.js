@@ -1,13 +1,15 @@
+const { errorGenerator, ERROR_TYPES } = require('../../../utils/errors');
+
 const TABLE = 'songs';
 
 module.exports = injectedStore => {
   const store = injectedStore;
   if (!store) {
-    throw new Error('Store dependency is required');
+    throw errorGenerator('Store dependency is required');
   }
   const detail = async (table, id) => {
     const songDetail = await store.detail(table, id);
-    if (!songDetail) throw new Error('not found');
+    if (!songDetail) throw errorGenerator('Song not found', ERROR_TYPES.NOT_FOUND);
     return songDetail;
   };
   return {
