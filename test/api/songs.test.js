@@ -18,5 +18,5 @@ describe('Components/Songs', () => {
   });
   it('responds with error when sond id does not exists', () => request(app)
     .get('/api/v1/songs/1000')
-    .expect(404)
+    .expect(404));
 });

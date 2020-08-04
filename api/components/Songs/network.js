@@ -13,7 +13,7 @@ const router = express.Router();
 const list = (req, res) => {
   Controller.list()
     .then(songs => res.status(200).json(songs))
-    .catch(({ message }) => res.status(500).json(message));
+    .catch(handleHTTPError(res));
 };
 
 /**
@@ -26,7 +26,7 @@ const list = (req, res) => {
 const detail = (req, res) => {
   Controller.detail(req.params.id)
     .then(song => res.status(200).json(song))
-    .catch(error => handleHTTPError(res, error));
+    .catch(handleHTTPError(res));
 };
 
 router.get('/', list);

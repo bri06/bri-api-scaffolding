@@ -8,7 +8,7 @@ const errorFormatter = error => ({
   type: error.type,
 });
 
-const handleHTTPError = (res, error) => {
+const handleHTTPError = res => error => {
   const formattedError = errorFormatter(error);
   const types = {
     [ERROR_TYPES.NOT_FOUND]: () => res.status(404).json(formattedError),
