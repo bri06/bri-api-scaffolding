@@ -7,5 +7,6 @@ module.exports = (injectedStore) => {
   }
   return {
     list: () => store.list(TABLE),
+    detail: (id) => store.detail(TABLE, id),
   };
 };
