@@ -1,6 +1,7 @@
 const express = require('express');
 const Controller = require('./index');
 const { handleHTTPError } = require('../../../utils/errors');
+const { songValidations } = require('./validations');
 
 const router = express.Router();
 
@@ -53,14 +54,13 @@ const remove = (req, res) => {
  * @return {ErrorResponse} 400 - Bad request response
 */
 const create = (req, res) => {
-  Controller.create(req.body)
+  Controller.create(req)
     .then(() => res.status(200))
     .catch(handleHTTPError(res));
 };
-
 router.get('/', list);
 router.get('/:id', detail);
 router.delete('/:id', remove);
-router.post('/', create);
+router.post('/', songValidations, create);
 
 module.exports = router;

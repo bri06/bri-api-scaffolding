@@ -1,4 +1,5 @@
 const { nanoid } = require('nanoid');
+const { validationResult } = require('express-validator');
 const { errorGenerator, ERROR_TYPES } = require('../../../utils/errors');
 
 const TABLE = 'songs';
@@ -18,17 +19,21 @@ module.exports = injectedStore => {
     if (!removedSong) throw errorGenerator('Song not found', ERROR_TYPES.NOT_FOUND);
     return removedSong;
   };
-  const create = async body => {
-    const { title, artist, year } = body;
+  const create = async (table, req) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw errorGenerator('Invalid inputs passed, please check your data', ERROR_TYPES.UNPROCESSABLE);
+    }
+    const { title, artist, year } = req.body;
     const createdSong = { title, artist, year };
     createdSong.id = nanoid();
-    await store.create(TABLE, createdSong);
+    await store.create(table, createdSong);
     return createdSong;
   };
   return {
     list: () => store.list(TABLE),
     detail: id => detail(TABLE, id),
     remove: id => remove(TABLE, id),
-    create: body => create(body),
+    create: req => create(TABLE, req),
   };
 };
