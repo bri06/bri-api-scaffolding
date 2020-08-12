@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jsdoc-swagger": "^1.0.5",
+    "express-validator": "^6.6.1",
     "helmet": "^4.0.0",
     "morgan": "^1.10.0",
     "nanoid": "^3.1.12",
