@@ -45,9 +45,7 @@ const remove = async (tabla, id) => {
   return song;
 };
 
-const create = async (tabla, data) => {
-  db[tabla].push(data);
-};
+const create = async (tabla, data) => db[tabla].push(data);
 
 module.exports = {
   list,

@@ -28,4 +28,50 @@ describe('Components/Songs', () => {
       .expect(200)
       .then(response => expect(response.body).toEqual(deletedSong));
   });
+  it('Should create a song correctly', () => {
+    const body = { title: 'New song', artist: 'New artist', year: 2020 };
+    return request(app)
+      .post('/api/v1/songs')
+      .send(body)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(({ body: res }) => {
+        expect(res.title).toEqual(body.title);
+        expect(res.artist).toEqual(body.artist);
+        expect(res.year).toEqual(body.year);
+      });
+  });
+  it('Should return 422 when the artist input is not sent', () => {
+    const body = { title: 'New song', year: 2020 };
+    return request(app)
+      .post('/api/v1/songs')
+      .send(body)
+      .expect(422)
+      .then(({ body: res }) => {
+        expect(res.message).toEqual('Invalid inputs passed, please check your data');
+        expect(res.type).toEqual('Unprocessable Entity');
+      });
+  });
+  it('Should return 422 when the title input is not sent', () => {
+    const body = { artist: 'New artist', year: 2020 };
+    return request(app)
+      .post('/api/v1/songs')
+      .send(body)
+      .expect(422)
+      .then(({ body: res }) => {
+        expect(res.message).toEqual('Invalid inputs passed, please check your data');
+        expect(res.type).toEqual('Unprocessable Entity');
+      });
+  });
+  it('Should return 422 when the year input is not sent', () => {
+    const body = { title: 'New song', artist: 'New artist' };
+    return request(app)
+      .post('/api/v1/songs')
+      .send(body)
+      .expect(422)
+      .then(({ body: res }) => {
+        expect(res.message).toEqual('Invalid inputs passed, please check your data');
+        expect(res.type).toEqual('Unprocessable Entity');
+      });
+  });
 });

@@ -55,7 +55,7 @@ const remove = (req, res) => {
 */
 const create = (req, res) => {
   Controller.create(req)
-    .then(() => res.status(200))
+    .then(song => res.status(200).json(song))
     .catch(handleHTTPError(res));
 };
 router.get('/', list);
