@@ -26,6 +26,7 @@
     "express-jsdoc-swagger": "^1.0.5",
     "helmet": "^4.0.0",
     "morgan": "^1.10.0",
+    "nanoid": "^3.1.12",
     "winston": "^3.3.3"
   },
   "devDependencies": {
