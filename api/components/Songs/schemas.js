@@ -2,9 +2,9 @@
  * A song
  * @typedef {object} Song
  * @property {number} id - Song id
- * @property {string} title - The title
- * @property {string} artist - The artist
- * @property {number} year - The year - double
+ * @property {string} title.required - The title
+ * @property {string} artist.required - The artist
+ * @property {number} year.required - The year - double
  */
 
 /**

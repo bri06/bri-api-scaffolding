@@ -44,8 +44,23 @@ const remove = (req, res) => {
     .catch(handleHTTPError(res));
 };
 
+/**
+ * POST /api/v1/songs
+ * @summary Endpoint to add a song
+ * @param {Song} request.body.required - song data - application/json
+ * @tags Songs - Everything about songs
+ * @return {Song} 200 - Created song
+ * @return {ErrorResponse} 400 - Bad request response
+*/
+const create = (req, res) => {
+  Controller.create(req.body)
+    .then(() => res.status(200))
+    .catch(handleHTTPError(res));
+};
+
 router.get('/', list);
 router.get('/:id', detail);
 router.delete('/:id', remove);
+router.post('/', create);
 
 module.exports = router;

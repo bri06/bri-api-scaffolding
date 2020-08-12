@@ -1,3 +1,4 @@
+const { nanoid } = require('nanoid');
 const { errorGenerator, ERROR_TYPES } = require('../../../utils/errors');
 
 const TABLE = 'songs';
@@ -17,9 +18,17 @@ module.exports = injectedStore => {
     if (!removedSong) throw errorGenerator('Song not found', ERROR_TYPES.NOT_FOUND);
     return removedSong;
   };
+  const create = async body => {
+    const { title, artist, year } = body;
+    const createdSong = { title, artist, year };
+    createdSong.id = nanoid();
+    await store.create(TABLE, createdSong);
+    return createdSong;
+  };
   return {
     list: () => store.list(TABLE),
     detail: id => detail(TABLE, id),
     remove: id => remove(TABLE, id),
+    create: body => create(body),
   };
 };
