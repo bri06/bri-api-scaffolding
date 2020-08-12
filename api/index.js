@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 
 const config = require('../config.js');
@@ -10,6 +11,7 @@ const songs = require('./components/Songs/network');
 const app = express();
 
 expressJSDocSwagger(app)(config.api.swaggerOptions);
+app.use(bodyParser.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan('tiny', { skip: () => process.env.NODE_ENV === 'test' }));
