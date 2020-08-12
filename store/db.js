@@ -37,7 +37,16 @@ const detail = async (tabla, id) => {
   return songDetail;
 };
 
+const remove = async (tabla, id) => {
+  const collection = await list(tabla);
+  const songId = Number(id);
+  const song = collection.find(elem => elem.id === songId);
+  db.songs = collection.filter(elem => elem.id !== songId);
+  return song;
+};
+
 module.exports = {
   list,
   detail,
+  remove,
 };
