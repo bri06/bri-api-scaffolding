@@ -45,11 +45,23 @@ const remove = async (tabla, id) => {
   return song;
 };
 
-const create = async (tabla, data) => db[tabla].push(data);
+const create = async (tabla, song) => db[tabla].push(song);
+
+const update = async (tabla, song) => {
+  const collection = await list(tabla);
+  const index = collection.find(elem => elem.id === Number(song.id));
+  db.songs = [
+    ...collection.slice(0, index),
+    song,
+    ...collection.slice(index + 1),
+  ];
+  return song;
+};
 
 module.exports = {
   list,
   detail,
   remove,
   create,
+  update,
 };

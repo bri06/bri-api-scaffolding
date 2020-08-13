@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Components/Songs responds with json 1`] = `
+exports[`Components/Songs GET songs responds with json 1`] = `
 Array [
   Object {
     "artist": "Artist 1",

@@ -58,9 +58,24 @@ const create = (req, res) => {
     .then(song => res.status(200).json(song))
     .catch(handleHTTPError(res));
 };
+/**
+ * PUT /api/v1/songs/{id}
+ * @summary Endpoint to edit a song
+ * @param {number} id.path - song id
+ * @param {Song} request.body.required - song data - application/json
+ * @tags Songs - Everything about songs
+ * @return {Song} 200 - Updated song
+ * @return {ErrorResponse} 400 - Bad request response
+*/
+const update = (req, res) => {
+  Controller.update(req)
+    .then(song => res.status(200).json(song))
+    .catch(handleHTTPError(res));
+};
 router.get('/', list);
 router.get('/:id', detail);
 router.delete('/:id', remove);
 router.post('/', songValidations, create);
+router.put('/:id', songValidations, update);
 
 module.exports = router;

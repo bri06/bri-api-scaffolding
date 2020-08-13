@@ -30,10 +30,25 @@ module.exports = injectedStore => {
     await store.create(table, createdSong);
     return createdSong;
   };
+  const update = async (table, req) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw errorGenerator('Invalid inputs passed, please check your data', ERROR_TYPES.UNPROCESSABLE);
+    }
+    const { title, artist, year } = req.body;
+    const { id } = req.params;
+    const song = {
+      id, title, artist, year,
+    };
+    const updatedSong = await store.update(table, song);
+
+    return updatedSong;
+  };
   return {
     list: () => store.list(TABLE),
     detail: id => detail(TABLE, id),
     remove: id => remove(TABLE, id),
     create: req => create(TABLE, req),
+    update: req => update(TABLE, req),
   };
 };
